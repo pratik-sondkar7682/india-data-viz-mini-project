@@ -16,14 +16,15 @@ secondary_parameter = st.sidebar.selectbox('Select Secondary Parameter',sorted(d
 plot = st.sidebar.button('Plot Graph')
 st.text('Size represents primary parameter')
 st.text('Color represents secondary parameter')
-if selected_state=='Overall India':
-    fig = px.scatter_map(df, lat="Latitude", lon="Longitude",
-                  color_continuous_scale=px.colors.cyclical.IceFire, size = primary_parameter, color= secondary_parameter, zoom=3,
-                  map_style="carto-positron",width = 1200,height=700,hover_name='District')
-    st.plotly_chart(fig,use_container_width=True)
-else:
-    state_df = df[df['State']==selected_state]
-    fig = px.scatter_map(state_df, lat="Latitude", lon="Longitude",
-                  color_continuous_scale=px.colors.cyclical.IceFire, size = primary_parameter, color= secondary_parameter, zoom=3,
-                  map_style="carto-positron",width = 1200,height=700,hover_name='District')
-    st.plotly_chart(fig,use_container_width=True)
+if plot:
+    if selected_state=='Overall India':
+        fig = px.scatter_map(df, lat="Latitude", lon="Longitude",
+                    color_continuous_scale=px.colors.cyclical.IceFire, size = primary_parameter, color= secondary_parameter, zoom=3,
+                    map_style="carto-positron",width = 1200,height=700,hover_name='District')
+        st.plotly_chart(fig,use_container_width=True)
+    else:
+        state_df = df[df['State']==selected_state]
+        fig = px.scatter_map(state_df, lat="Latitude", lon="Longitude",
+                    color_continuous_scale=px.colors.cyclical.IceFire, size = primary_parameter, color= secondary_parameter, zoom=3,
+                    map_style="carto-positron",width = 1200,height=700,hover_name='District')
+        st.plotly_chart(fig,use_container_width=True)
